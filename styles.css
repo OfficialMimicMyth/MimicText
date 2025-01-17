@@ -253,7 +253,7 @@ body.dark-mode {
 
 @media (max-width: 600px) {
     .keyboard {
-        grid-template-columns: repeat(20, 1fr);
+        grid-template-columns: repeat(21, 4%);
     }
     
     .container {
