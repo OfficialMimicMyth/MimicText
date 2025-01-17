@@ -1,0 +1,44 @@
+{
+    "name": "MimicText",
+    "short_name": "MimicText",
+    "description": "Text encryption and decryption tool",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "orientation": "portrait-primary",
+    "icons": [
+      {
+        "src": "icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      },
+      {
+        "src": "icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "screenshot1.png",
+        "sizes": "1280x720",
+        "type": "image/png",
+        "platform": "wide"
+      }
+    ],
+    "shortcuts": [
+      {
+        "name": "Encrypt Text",
+        "url": "./index.html?action=encrypt",
+        "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+      },
+      {
+        "name": "Decrypt Text",
+        "url": "./index.html?action=decrypt",
+        "icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+      }
+    ]
+  }
