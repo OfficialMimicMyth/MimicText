@@ -170,6 +170,23 @@ button:active {
     transition: all 0.2s ease;
 }
 
+.key-wingdings {
+    font-family: 'Wingdings', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 20px;
+    margin-bottom: 4px;
+    line-height: 1;
+    display: block;
+}
+
+.key-letter {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1;
+}
+
 /* Special key styles */
 .key.capslock {
     grid-column: span 4;
@@ -254,7 +271,7 @@ body.dark-mode {
     }
 
     .key {
-        padding: 8px;
+        padding: 6px;
         min-height: 40px;
     }
 
@@ -270,6 +287,14 @@ body.dark-mode {
         grid-column: span 3;
     }
 
+    .key-wingdings {
+        font-size: 16px;
+    }
+    
+    .key-letter {
+        font-size: 10px;
+    }
+    
     button {
         padding: 8px 16px;
     }
