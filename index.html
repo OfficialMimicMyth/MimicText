@@ -23,7 +23,37 @@
             url("https://db.onlinewebfonts.com/t/e991cc888d4fb544fe0a88d065ab6efc.woff")format("woff"),
             url("https://db.onlinewebfonts.com/t/e991cc888d4fb544fe0a88d065ab6efc.ttf")format("truetype"),
             url("https://db.onlinewebfonts.com/t/e991cc888d4fb544fe0a88d065ab6efc.svg#Wingdings")format("svg");
+            font-display: swap;
         }
+        .key-wingdings {
+            font-family: 'Wingdings', sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        .wingdings {
+            font-family: 'Wingdings', sans-serif !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                margin: 10px;
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            textarea {
+                height: 120px;
+            }
+        }
+    
     </style>
 </head>
 <body>
@@ -213,24 +243,29 @@
             
             keyboard.innerHTML = '';
             
-            // Add capslock key with increased width
+            // Add capslock key
             const capsLockKey = document.createElement('div');
             capsLockKey.className = 'key capslock';
-            capsLockKey.innerHTML = '<div class="key-letter">Caps Lock</div>';
+            capsLockKey.innerHTML = `
+                <div class="key-wingdings">${isCapsLockOn ? 'A' : 'a'}</div>
+                <div class="key-letter">Caps Lock</div>
+            `;
             capsLockKey.onclick = toggleCapsLock;
             keyboard.appendChild(capsLockKey);
 
             // Add letters
-            const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-            letters.forEach(letter => {
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(letter => {
                 const key = document.createElement('div');
                 key.className = 'key';
                 const wingdingsChar = document.createElement('div');
                 wingdingsChar.className = 'key-wingdings';
                 wingdingsChar.textContent = isCapsLockOn ? letter : letter.toLowerCase();
+                const letterDisplay = document.createElement('div');
+                letterDisplay.className = 'key-letter';
+                letterDisplay.textContent = letter;
                 
                 key.appendChild(wingdingsChar);
-                key.innerHTML += `<div class="key-letter">${letter}</div>`;
+                key.appendChild(letterDisplay);
                 key.onclick = () => insertChar(isCapsLockOn ? letter : letter.toLowerCase());
                 keyboard.appendChild(key);
             });
@@ -239,10 +274,15 @@
             symbols.forEach(symbol => {
                 const key = document.createElement('div');
                 key.className = 'key';
-                key.innerHTML = `
-                    <div class="key-wingdings">${symbol}</div>
-                    <div class="key-letter symbol-key">${symbol}</div>
-                `;
+                const wingdingsChar = document.createElement('div');
+                wingdingsChar.className = 'key-wingdings';
+                wingdingsChar.textContent = symbol;
+                const symbolDisplay = document.createElement('div');
+                symbolDisplay.className = 'key-letter symbol-key';
+                symbolDisplay.textContent = symbol;
+                
+                key.appendChild(wingdingsChar);
+                key.appendChild(symbolDisplay);
                 key.onclick = () => insertChar(symbol);
                 keyboard.appendChild(key);
             });
@@ -250,14 +290,20 @@
             // Add space with increased width
             const spaceKey = document.createElement('div');
             spaceKey.className = 'key space';
-            spaceKey.innerHTML = '<div class="key-letter">Space</div>';
+            spaceKey.innerHTML = `
+                <div class="key-wingdings">␣</div>
+                <div class="key-letter">Space</div>
+            `;
             spaceKey.onclick = () => insertChar(' ');
             keyboard.appendChild(spaceKey);
 
             // Add backspace with increased width
             const backspaceKey = document.createElement('div');
             backspaceKey.className = 'key backspace';
-            backspaceKey.innerHTML = '<div class="key-letter">⌫</div>';
+            backspaceKey.innerHTML = `
+                <div class="key-wingdings">←</div>
+                <div class="key-letter">⌫</div>
+            `;
             backspaceKey.onclick = () => backspace();
             keyboard.appendChild(backspaceKey);
         }
