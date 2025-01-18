@@ -242,6 +242,14 @@
             if (!keyboard) return;
             
             keyboard.innerHTML = '';
+
+            keyboard.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                const target = e.target.closest('.key');
+                if (target) {
+                    target.click();
+                }
+            }, { passive: false });
             
             // Add capslock key
             const capsLockKey = document.createElement('div');
@@ -326,28 +334,20 @@
             const input = document.getElementById('inputText');
             if (!input) return;
             
-            // Remove readonly temporarily to allow changes
-            input.removeAttribute('readonly');
-            
-            // Get cursor position
             const start = input.selectionStart;
             const end = input.selectionEnd;
             const text = input.value;
             
-            // Split text and insert new character
             const beforeCursor = text.slice(0, start);
             const afterCursor = text.slice(end);
             
-            // Add the character with Wingdings class
             const newText = beforeCursor + char + afterCursor;
             input.value = newText;
             input.selectionStart = input.selectionEnd = start + 1;
             
-            // Ensure the input has Wingdings font
             input.style.fontFamily = 'WingdingsCustom, Wingdings';
             
-            // Add readonly back
-            input.setAttribute('readonly', 'readonly');
+            input.focus();
         }
 
         function setupInputHandling() {
@@ -734,19 +734,6 @@
             const input = document.getElementById('inputText');
             if (input) {
                 input.style.fontFamily = 'Arial, sans-serif';
-            }
-
-            const inputText = document.getElementById('inputText');
-            if (inputText) {
-                // Prevent keyboard from showing on mobile
-                inputText.setAttribute('readonly', 'readonly');
-                
-                // Prevent auto-scrolling when clicking keyboard keys
-                document.querySelectorAll('.key').forEach(key => {
-                    key.addEventListener('touchstart', (e) => {
-                        e.preventDefault();
-                    });
-                });
             }
         });
 
