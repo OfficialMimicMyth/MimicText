@@ -356,6 +356,16 @@
 
             let originalFont = window.getComputedStyle(input).fontFamily;
 
+             // When using virtual keyboard, temporarily make input readonly
+            document.getElementById('wingdingsKeyboard').addEventListener('touchstart', function(e) {
+                input.setAttribute('readonly', 'readonly');
+            });
+        
+            // When keyboard interaction ends, remove readonly
+            document.getElementById('wingdingsKeyboard').addEventListener('touchend', function(e) {
+                input.removeAttribute('readonly');
+            });
+
             input.addEventListener('keydown', function(e) {
                 input.style.fontFamily = originalFont;
             });
